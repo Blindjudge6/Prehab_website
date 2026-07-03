@@ -5,6 +5,7 @@ import streamlit as st
 st.set_page_config(page_title="Prien Aktiv PreHab", page_icon="🩺", layout="wide")
 
 APP_TITLE = "Prien Aktiv PreHab"
+DEFAULT_APP_PASSWORD = "Prien0107!"
 
 
 def get_configured_password() -> str:
@@ -16,7 +17,11 @@ def get_configured_password() -> str:
         configured_password = st.secrets.get("APP_PASSWORD", "").strip()
     except Exception:
         configured_password = ""
-    return configured_password
+
+    if configured_password:
+        return configured_password
+
+    return DEFAULT_APP_PASSWORD
 
 
 def require_password() -> bool:
